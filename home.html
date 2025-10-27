@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AdConnect - আপনার এড নেটওয়ার্ক</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #10b981;
+  --accent: #f59e0b;
+  --dark: #1e293b;
+  --light: #f8fafc;
+  --gray: #64748b;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --radius: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f1f5f9;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Styles */
+header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.logo i {
+  margin-right: 10px;
+  font-size: 28px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0da271;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-outline:hover {
+  background: white;
+  color: var(--primary);
+}
+
+/* Hero Section */
+.hero {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.05"><polygon points="1000,0 1000,100 0,100"></polygon></svg>');
+  background-size: cover;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+/* Stats Section */
+.stats {
+  padding: 80px 0;
+  background: white;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 30px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.stat-text {
+  font-size: 1.1rem;
+  color: var(--gray);
+}
+
+/* Services Section */
+.services {
+  padding: 80px 0;
+  background: #f8fafc;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  color: var(--dark);
+  margin-bottom: 15px;
+}
+
+.section-title p {
+  font-size: 1.1rem;
+  color: var(--gray);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.service-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border-top: 4px solid var(--primary);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.service-icon {
+  font-size: 40px;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.service-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--dark);
+}
+
+.service-desc {
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+
+/* Calculator Section */
+.calculator-section {
+  padding: 80px 0;
+  background: white;
+}
+
+.calculator-container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: var(--shadow);
+}
+
+.calculator-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  color: var(--dark);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.calculator-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.calculator-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.result-box {
+  margin-top: 25px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: var(--radius);
+  border-left: 4px solid var(--primary);
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.result-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.result-label {
+  font-weight: 500;
+}
+
+.result-value {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Footer */
+footer {
+  background: var(--dark);
+  color: white;
+  padding: 60px 0 30px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-column h3 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-column h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--primary);
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: white;
+  padding-left: 5px;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid #334155;
+  color: #94a3b8;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 20px 30px;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 30px;
+}
+
+.form-tabs {
+  display: flex;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px;
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--gray);
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.form-tab {
+  display: none;
+}
+
+.form-tab.active {
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+<div class="container">
+<nav class="navbar">
+<div class="logo">
+<i class="fas fa-ad"></i>
+AdConnect
+</div>
+<ul class="nav-links">
+<li><a href="#home">হোম</a></li>
+<li><a href="#services">সেবাসমূহ</a></li>
+<li><a href="#calculator">ক্যালকুলেটর</a></li>
+<li><a href="#about">আমাদের সম্পর্কে</a></li>
+<li><a href="#contact">যোগাযোগ</a></li>
+</ul>
+<div class="auth-buttons">
+<button class="btn btn-primary" onclick="openModal('signup')">
+<i class="fas fa-user-plus"></i> সাইন আপ
+</button>
+<button class="btn btn-outline" onclick="openModal('login')">
+<i class="fas fa-sign-in-alt"></i> লগইন
+</button>
+</div>
+</nav>
+</div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+<div class="container">
+<div class="hero-content">
+<h1>আপনার ওয়েবসাইট থেকে আয় করুন সহজেই</h1>
+<p>AdConnect বাংলাদেশের শীর্ষস্থানীয় এড নেটওয়ার্ক, যেখানে আপনি আপনার ওয়েবসাইট ট্রাফিক থেকে সর্বোচ্চ আয় করতে পারবেন।</p>
+<div class="hero-buttons">
+<button class="btn btn-primary" onclick="openModal('signup')">
+<i class="fas fa-rocket"></i> এখনই শুরু করুন
+</button>
+<button class="btn btn-outline">
+<i class="fas fa-play-circle"></i> ভিডিও দেখুন
+</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+<div class="container">
+<div class="stats-container">
+<div class="stat-card">
+<div class="stat-icon">
+<i class="fas fa-users"></i>
+</div>
+<div class="stat-number" id="publisher-count">0</div>
+<div class="stat-text">সক্রিয় প্রকাশক</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">
+<i class="fas fa-check-circle"></i>
+</div>
+<div class="stat-number" id="approval-count">0</div>
+<div class="stat-text">অনুমোদিত ওয়েবসাইট</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">
+<i class="fas fa-money-bill-wave"></i>
+</div>
+<div class="stat-number">৳ ৫০ লাখ+</div>
+<div class="stat-text">প্রকাশকদের দেওয়া হয়েছে</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">
+<i class="fas fa-globe"></i>
+</div>
+<div class="stat-number">১০০+</div>
+<div class="stat-text">দেশে পরিষেবা</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+<div class="container">
+<div class="section-title">
+<h2>আমাদের সেবাসমূহ</h2>
+<p>AdConnect দিয়ে আপনার ওয়েবসাইট মনিটাইজেশনকে এক নতুন স্তরে নিয়ে যান</p>
+</div>
+<div class="services-grid">
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-plug"></i>
+</div>
+<h3 class="service-title">সহজ এড ইন্টিগ্রেশন</h3>
+<p class="service-desc">কয়েকটি ক্লিকে আপনার ওয়েবসাইটে বিজ্ঞাপন সংযুক্ত করুন। কোডিং জ্ঞান ছাড়াই কাজ করুন।</p>
+</div>
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-bolt"></i>
+</div>
+<h3 class="service-title">দ্রুত অনুমোদন প্রক্রিয়া</h3>
+<p class="service-desc">২৪ ঘন্টার মধ্যে আপনার ওয়েবসাইট অনুমোদন এবং বিজ্ঞাপন প্রদর্শন শুরু করুন।</p>
+</div>
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-headset"></i>
+</div>
+<h3 class="service-title">ডেডিকেটেড সাপোর্ট</h3>
+<p class="service-desc">২৪/৭ সাপোর্ট দল আপনার যেকোন সমস্যা সমাধানে সদা প্রস্তুত।</p>
+</div>
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-chart-line"></i>
+</div>
+<h3 class="service-title">রিয়েল-টাইম রিপোর্টিং</h3>
+<p class="service-desc">আপনার আয় এবং ট্রাফিকের রিয়েল-টাইম ডেটা এবং বিশ্লেষণ পান।</p>
+</div>
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-shield-alt"></i>
+</div>
+<h3 class="service-title">এড ফ্রড প্রোটেকশন</h3>
+<p class="service-desc">উন্নত প্রযুক্তি দিয়ে আপনার বিজ্ঞাপন ক্লিক ফ্রড থেকে সুরক্ষিত রাখুন।</p>
+</div>
+<div class="service-card">
+<div class="service-icon">
+<i class="fas fa-mobile-alt"></i>
+</div>
+<h3 class="service-title">মোবাইল অপটিমাইজড</h3>
+<p class="service-desc">মোবাইল ট্রাফিকের জন্য বিশেষভাবে অপটিমাইজড বিজ্ঞাপন ফরম্যাট।</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Calculator Section -->
+<section class="calculator-section" id="calculator">
+<div class="container">
+<div class="section-title">
+<h2>ট্রাফিক ক্যালকুলেটর</h2>
+<p>আপনার ওয়েবসাইট ট্রাফিক থেকে কত আয় করতে পারবেন তা অনুমান করুন</p>
+</div>
+<div class="calculator-container">
+<h3 class="calculator-title">🚦 ট্রাফিক ক্যালকুলেটর</h3>
+<div class="form-group">
+<label class="form-label" for="trafficInput">মোট ট্রাফিক লিখুন:</label>
+<input type="number" id="trafficInput" class="form-input" placeholder="যেমন: 10000">
+</div>
+<div class="form-group">
+<label class="form-label" for="costInput">প্রতি ১০০০ ট্রাফিকের দাম (টাকা):</label>
+<input type="number" id="costInput" class="form-input" value="100">
+</div>
+<button class="calculator-btn" onclick="calculateTraffic()">
+<i class="fas fa-calculator"></i> হিসাব করুন
+</button>
+<div class="result-box" id="resultBox">
+<div class="result-item">
+<span class="result-label">প্রথমে ট্রাফিক:</span>
+<span class="result-value">-</span>
+</div>
+<div class="result-item">
+<span class="result-label">লস হওয়া ট্রাফিক:</span>
+<span class="result-value">-</span>
+</div>
+<div class="result-item">
+<span class="result-label">চূড়ান্ত ট্রাফিক:</span>
+<span class="result-value">-</span>
+</div>
+<div class="result-item">
+<span class="result-label">মোট আয়:</span>
+<span class="result-value">-</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-column">
+<h3>AdConnect</h3>
+<p>বাংলাদেশের শীর্ষস্থানীয় এড নেটওয়ার্ক, যেখানে প্রকাশকরা তাদের ওয়েবসাইট ট্রাফিক থেকে সর্বোচ্চ আয় করতে পারে।</p>
+</div>
+<div class="footer-column">
+<h3>লিংকস</h3>
+<ul class="footer-links">
+<li><a href="#home">হোম</a></li>
+<li><a href="#services">সেবাসমূহ</a></li>
+<li><a href="#calculator">ক্যালকুলেটর</a></li>
+<li><a href="#about">আমাদের সম্পর্কে</a></li>
+<li><a href="#contact">যোগাযোগ</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h3>সাপোর্ট</h3>
+<ul class="footer-links">
+<li><a href="#">সচরাচর জিজ্ঞাসা</a></li>
+<li><a href="#">সাহায্য কেন্দ্র</a></li>
+<li><a href="#">প্রাইভেসি পলিসি</a></li>
+<li><a href="#">টার্মস অফ সার্ভিস</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h3>যোগাযোগ</h3>
+<ul class="footer-links">
+<li><i class="fas fa-map-marker-alt"></i> ঢাকা, বাংলাদেশ</li>
+<li><i class="fas fa-phone"></i> +৮৮০ ১৭XX-XXXXXX</li>
+<li><i class="fas fa-envelope"></i> info@adconnect.com</li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; ২০২৩ AdConnect. সকল স্বত্ব সংরক্ষিত।</p>
+</div>
+</div>
+</footer>
+
+<!-- Auth Modal -->
+<div class="modal" id="authModal">
+<div class="modal-content">
+<div class="modal-header">
+<h2 id="modalTitle">সাইন আপ</h2>
+<button class="close-btn" onclick="closeModal()">&times;</button>
+</div>
+<div class="modal-body">
+<div class="form-tabs">
+<button class="tab-btn active" onclick="switchTab('signup')">সাইন আপ</button>
+<button class="tab-btn" onclick="switchTab('login')">লগইন</button>
+</div>
+
+<div id="signupTab" class="form-tab active">
+<div class="form-group">
+<label class="form-label" for="regUsername">ব্যবহারকারীর নাম</label>
+<input type="text" id="regUsername" class="form-input" placeholder="আপনার ইউজারনেম লিখুন">
+</div>
+<div class="form-group">
+<label class="form-label" for="regEmail">ইমেইল</label>
+<input type="email" id="regEmail" class="form-input" placeholder="আপনার ইমেইল লিখুন">
+</div>
+<div class="form-group">
+<label class="form-label" for="regPassword">পাসওয়ার্ড</label>
+<input type="password" id="regPassword" class="form-input" placeholder="পাসওয়ার্ড লিখুন">
+</div>
+<button class="calculator-btn" onclick="submitForm('signup')">
+<i class="fas fa-user-plus"></i> সাইন আপ করুন
+</button>
+</div>
+
+<div id="loginTab" class="form-tab">
+<div class="form-group">
+<label class="form-label" for="loginEmail">ইমেইল</label>
+<input type="email" id="loginEmail" class="form-input" placeholder="আপনার ইমেইল লিখুন">
+</div>
+<div class="form-group">
+<label class="form-label" for="loginPassword">পাসওয়ার্ড</label>
+<input type="password" id="loginPassword" class="form-input" placeholder="পাসওয়ার্ড লিখুন">
+</div>
+<button class="calculator-btn" onclick="submitForm('login')">
+<i class="fas fa-sign-in-alt"></i> লগইন করুন
+</button>
+</div>
+</div>
+</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBfPIfmI_YT2bkpJYqSrWIQsFNeNlEcouo",
+  authDomain: "website-save-e50aa.firebaseapp.com",
+  databaseURL: "https://website-save-e50aa-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "website-save-e50aa",
+  storageBucket: "website-save-e50aa.appspot.com",
+  messagingSenderId: "658481286063",
+  appId: "1:658481286063:web:c40358276b8fe33750bd5a",
+  measurementId: "G-XCBFERDDBG"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// Modal Functions
+window.openModal = function(type) {
+  document.getElementById('authModal').style.display = 'flex';
+  switchTab(type);
+}
+
+window.closeModal = function() {
+  document.getElementById('authModal').style.display = 'none';
+}
+
+window.switchTab = function(tab) {
+  // Update tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  document.querySelectorAll('.form-tab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+
+  event.target.classList.add('active');
+  document.getElementById(tab + 'Tab').classList.add('active');
+  document.getElementById('modalTitle').innerText = tab === 'signup' ? 'সাইন আপ' : 'লগইন';
+}
+
+// Form Submission
+window.submitForm = function(type) {
+  if (type === 'signup') {
+    const username = document.getElementById('regUsername').value;
+    const emailRaw = document.getElementById('regEmail').value;
+    const email = emailRaw.replace('.', ',');
+    const password = document.getElementById('regPassword').value;
+
+    if (username && email && password) {
+      set(ref(db, 'users/' + email), { username, email, password })
+      .then(() => {
+        alert('সাইন আপ সফল!');
+        closeModal();
+        updateStats();
+      })
+      .catch(err => alert('ত্রুটি: ' + err.message));
+    } else {
+      alert('দয়া করে সকল তথ্য প্রদান করুন');
+    }
+  } else {
+    const emailRaw = document.getElementById('loginEmail').value;
+    const email = emailRaw.replace('.', ',');
+    const password = document.getElementById('loginPassword').value;
+
+    get(child(ref(db), 'users/' + email))
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        const user = snapshot.val();
+        if (user.password === password) {
+          // Store user data in localStorage for dashboard access
+          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('isLoggedIn', 'true');
+          
+          alert('লগইন সফল! স্বাগতম ' + user.username);
+          closeModal();
+          
+          // Redirect to dashboard after successful login
+          window.location.href = 'dashboard.html';
+        } else {
+          alert('ভুল পাসওয়ার্ড');
+        }
+      } else {
+        alert('ব্যবহারকারী খুঁজে পাওয়া যায়নি');
+      }
+    }).catch(err => alert('ত্রুটি: ' + err.message));
+  }
+}
+
+// Stats Update
+function updateStats() {
+  get(ref(db, 'users')).then(snap => {
+    document.getElementById('publisher-count').innerText = snap.exists() ? Object.keys(snap.val()).length : 0;
+  });
+  get(ref(db, 'approved')).then(snap => {
+    document.getElementById('approval-count').innerText = snap.exists() ? Object.keys(snap.val()).length : 0;
+  });
+}
+updateStats();
+
+// Traffic Calculator
+window.calculateTraffic = function() {
+  let traffic = parseInt(document.getElementById("trafficInput").value);
+  let costPer1k = parseFloat(document.getElementById("costInput").value);
+
+  if (isNaN(traffic) || traffic <= 0) {
+    document.getElementById("resultBox").innerHTML = "❌ সঠিক ট্রাফিক সংখ্যা লিখুন!";
+    return;
+  }
+
+  let lostTraffic = Math.floor(traffic / 1000) * 100;
+  let finalTraffic = traffic - lostTraffic;
+  let totalCost = (finalTraffic / 1000) * costPer1k;
+
+  // Update result box
+  const resultItems = document.querySelectorAll('.result-item');
+  resultItems[0].querySelector('.result-value').textContent = traffic.toLocaleString();
+  resultItems[1].querySelector('.result-value').textContent = lostTraffic.toLocaleString();
+  resultItems[2].querySelector('.result-value').textContent = finalTraffic.toLocaleString();
+  resultItems[3].querySelector('.result-value').textContent = totalCost.toFixed(2) + ' টাকা';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+  const modal = document.getElementById('authModal');
+  if (event.target === modal) {
+    closeModal();
+  }
+}
+</script>
+</body>
+</html>
