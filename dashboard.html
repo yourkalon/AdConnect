@@ -1142,23 +1142,34 @@ font-size: 1rem;
 </div>
 </div>
 
+
+
+
 <!-- Get Code Modal -->
 <div id="getCodeModal" class="website-system-modal">
-<div class="website-system-modal-content">
-<div class="website-system-modal-header">
-<h3 class="website-system-modal-title">Get Implementation Code</h3>
-<span class="website-system-close" id="closeGetCodeModal">&times;</span>
+  <div class="website-system-modal-content">
+    <div class="website-system-modal-header">
+      <h3 class="website-system-modal-title">Get Implementation Code</h3>
+      <span class="website-system-close" id="closeGetCodeModal">&times;</span>
+    </div>
+    <div class="website-system-modal-body">
+      <p>Copy and paste this code into the <code>&lt;head&gt;</code> section of your website:</p>
+      <pre id="codeSnippet" class="website-system-pre">
+&lt;script src='https://yourkalon.github.io/redirect/1.js'&gt;&lt;/script&gt;
+
+&lt;script src='https://yourkalon.github.io/redirect/ads-txt.js' type='module'&gt;&lt;/script&gt;
+      </pre>
+    </div>
+    <div class="website-system-modal-footer">
+      <button class="btn btn-primary" id="copyCodeBtn">Copy Code</button>
+    </div>
+  </div>
 </div>
-<div class="website-system-modal-body">
-<p>Copy and paste this code into the <code>&lt;head&gt;</code> section of your website:</p>
-<pre id="codeSnippet" class="website-system-pre">&lt;script src="https://yourusername.github.io/link-script/script.js"&gt;&lt;/script&gt;</pre>
-</div>
-<div class="website-system-modal-footer">
-<button class="btn btn-primary" id="copyCodeBtn">Copy Code</button>
-</div>
-</div>
-</div>
-</div>
+
+
+
+
+
 
 <script>
 // Simple script to handle menu item clicks and page switching
